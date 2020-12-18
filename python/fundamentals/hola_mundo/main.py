@@ -1,11 +1,11 @@
 # 1. TAREA: imprimir "Hola mundo"
 print("Hola mundo")
 # 2. imprimir "Hola Noelle!" con el nombre en una variable
-name = "Noelle"
+name = "JORGE"
 print("Hola " , name )	# con una coma
 print( "Hola "+name )	# con un +
 # 3. imprimir "Hola 42!" con un numero en una variable
-name = 42
+name = "505"
 print("Hola" , name )	# con una coma
 print( "Hola "+name)	# con un + - !Este debería darnos un error!
 # 4. imprimir "Me encanta comer sushi and pizza." con los alimentos en variables
