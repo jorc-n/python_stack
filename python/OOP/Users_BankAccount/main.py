@@ -1,52 +1,42 @@
-
-class BankAccount:
-    def __init__(self, int_rate, balance):
-        self.interes = int_rate
-        self.monto=balance
-
-    def deposit(self, amount):
-        self.monto+=amount
-        return self
-
-    def withdraw(self, amount):
-        if self.monto<amount:
-            print("Fondos Insuficiente: cobrar una tarifa de $5")
-            self.monto-=5
-        else:
-            self.monto-=amount
-        return self
-
-    def display_account_info(self):
-        print("saldo:", self.monto)
-        return self
-
-    def yield_interest(self):
-        if self.monto>0:
-            self.monto+=self.monto*self.interes
-            return self
 class User:
     def __init__(self, name, email):
         self.name = name
         self.email = email
-        self.account = BankAccount(int_rate=0.02, balance=0)
+        self.account = BankAccount(0.02, 0,name)
 
-    def make_deposit(self, monto):
-        self.account.deposit(monto)
+
+class BankAccount:
+    def __init__(self, int_rate, balance,name):
+        self.interes = int_rate
+        self.monto = balance
+        self.name=name
+
+    def deposit(self, amount):
+        self.monto += amount
         return self
 
-    def make_withdrawal(self, cantidad):
-        self.account.withdraw(cantidad)
+    def withdraw(self, amount):
+        if self.monto < amount:
+            print("Fondos Insuficiente: cobrar una tarifa de $5")
+            self.monto -= 5
+        else:
+            self.monto -= amount
         return self
 
-    def display_user_balance(self):
-        print("Usuario ", self.name, self.account.display_account_info())
+    def display_account_info(self):
+        print("usuario", self.name, "--saldo:", self.monto)
         return self
 
-cuenta1=BankAccount(0.1,100)
-jorge=User("Jorge","j@mail.com")
-gustavo=User("Gustavo","g@mail.com")
-oscar=User("Oscar", "o@mail.com")
-jorge.make_deposit(30).make_deposit(10).make_deposit(20).make_withdrawal(10).display_user_balance()
-gustavo.make_deposit(30).make_deposit(30).make_withdrawal(20).make_withdrawal(10).display_user_balance()
-oscar.make_deposit(50).make_withdrawal(10).make_withdrawal(15).make_withdrawal(10).display_user_balance()
+    def yield_interest(self):
+        if self.monto > 0:
+            self.monto += self.monto * self.interes
+            return self
 
+
+jorge = User("Jorge", "j@mail.com")
+gustavo = User("Gustavo", "g@mail.com")
+oscar = User("Oscar", "o@mail.com")
+
+jorge.account.deposit(1000).deposit(800).withdraw(500).yield_interest().display_account_info()
+gustavo.account.deposit(5000).deposit(500).withdraw(4000).yield_interest().display_account_info()
+oscar.account.deposit(1500).deposit(500).withdraw(3000).yield_interest().display_account_info()
